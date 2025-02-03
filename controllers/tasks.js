@@ -6,9 +6,10 @@ const createTask = (req, res) => {
     res.send('task created')
 }
 const getTask = (req, res) => {
-    res.send('get single task')
+     res.json({id:req.params.id})
 }
-const editTask = (req,res) => {
+const editTask = (req, res) => {
+    
     res.send('task edited')
 }
 const deleteTask = (req,res) => {
