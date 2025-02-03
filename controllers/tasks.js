@@ -2,6 +2,19 @@ const getAllTasks = (req,res) => {
     res.send('Hello world my irst server')
 }
 
+const createTask = (req, res) => {
+    res.send('task created')
+}
+const editTask = (req,res) => {
+    res.send('task edited')
+}
+const deleteTask = (req,res) => {
+    res.send('task deleted')
+}
+
 module.exports = {
-    getAllTasks
+    getAllTasks,
+    editTask,
+    createTask,
+    deleteTask
 }
