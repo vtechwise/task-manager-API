@@ -34,8 +34,22 @@ const getTask = async (req, res) => {
     return res.status(500).json({ success: false, msg: error });
   }
 };
-const editTask = (req, res) => {
-  res.send("task edited");
+const editTask = async (req, res) => {
+  try {
+    const { id: taskID } = req.params;
+    const task = await Task.findOneAndUpdate({ _id: taskID }, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!task) {
+      return res
+        .status(404)
+        .json({ success: false, msg: `No task with the given id:${taskID}` });
+    }
+    res.status(200).json({ task });
+  } catch (error) {
+    res.status(500).json({ success: false, msg: error });
+  }
 };
 
 const deleteTask = async (req, res) => {
@@ -50,7 +64,6 @@ const deleteTask = async (req, res) => {
     res.status(500).json({ success: false, msg: error });
   }
 
-  res.send("task deleted");
 };
 
 module.exports = {
